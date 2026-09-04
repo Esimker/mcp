@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.esimker/esim",
+  "title": "esimker eSIM store",
+  "description": "Prepaid travel data eSIMs: checkout links for people, autonomous purchases from a prepaid wallet.",
+  "version": "1.0.0",
+  "websiteUrl": "https://esimker.com/agents",
+  "icons": [
+    {
+      "src": "https://esimker.com/icons/icon-192.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "192x192"
+      ]
+    },
+    {
+      "src": "https://esimker.com/icons/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://esimker.com/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <wallet code>: the prepaid wallet's secret from create_wallet. Only the four wallet tools (get_wallet, create_deposit, get_deposit, purchase_esim) need it; the catalogue and the checkout flow work without it.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
