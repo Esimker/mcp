@@ -1,8 +1,8 @@
 # esimker MCP server
 
 [esimker](https://esimker.com) sells prepaid travel **data** eSIMs for 38
-destinations - countries and a few regions - without accounts: an order lives
-behind a secret link, the eSIM arrives as a QR code / LPA activation code
+destinations - countries and a few regions - with no account needed: an order
+lives behind a secret link, the eSIM arrives as a QR code / LPA activation code
 within about a minute of payment. Prices in USD from $1.00. Data only: no
 phone numbers, no SMS, no voice. Payment today is crypto (BTC, ETH, TRX,
 USDT); cards are not live yet.
@@ -56,7 +56,7 @@ Without a credential:
 
 | Tool | What it does |
 | --- | --- |
-| `search_destinations(query)` | destinations by name in any of 17 languages, the slug or the ISO code |
+| `search_destinations(query)` | destinations by name in any of 18 languages, the slug or the ISO code |
 | `get_plans(slug)` | the plans of one destination, with the `plan_id` |
 | `get_payment_methods()` | which of crypto, card and wallet are open right now |
 | `create_checkout(plan_id, …)` | an order for a person to pay: `checkout_url` and `order_url` |
@@ -122,6 +122,15 @@ from $25, +3% from $50, +5% from $100 (capped at $25); every purchase returns
   own use, or for the person you act for, is allowed; automated bulk
   purchasing for resale needs the reseller API
   (https://esimker.com/agents#wallet).
+
+## Accounts
+
+esimker has optional accounts for people (an email and a password,
+https://esimker.com/account): a buyer's orders and wallets in one place. The
+MCP server has no account tools and an agent needs no account - it keeps the
+order token and the wallet code. A person who wants the agent's purchases in
+their account links the wallet there with its code; the wallet goes on working
+by the code alone.
 
 ## Support
 
