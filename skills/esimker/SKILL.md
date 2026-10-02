@@ -7,14 +7,14 @@ metadata:
   homepage: https://esimker.com/agents
   docs: https://esimker.com/llms.txt
   repository: https://github.com/Esimker/mcp
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # esimker
 
 esimker sells prepaid travel **data** eSIMs: data only, no phone numbers, no
 SMS, no voice. 38 destinations (countries and a few regions), prices in USD
-from $1.00, no accounts and no KYC. An order is addressed by a secret token,
+from $1.00, no account needed and no KYC. An order is addressed by a secret token,
 a wallet by a secret code; the eSIM comes back as an LPA activation code to
 render as a QR. Payment today is crypto (BTC, ETH, TRX, USDT); cards are not
 live yet.
@@ -90,7 +90,7 @@ The exact numbers are in `get_wallet` and in the `create_deposit` description
 
 Without a credential:
 
-- `search_destinations(query)` - destinations by name in any of 17 languages, the slug or the ISO code
+- `search_destinations(query)` - destinations by name in any of 18 languages, the slug or the ISO code
 - `get_plans(slug)` - the plans of one destination, with the `plan_id`
 - `get_payment_methods()` - which of crypto, card and wallet are open
 - `create_checkout(plan_id, …)` - an order for a person to pay: `checkout_url` and `order_url`
@@ -105,6 +105,19 @@ With the wallet code:
 - `create_deposit(amount_usd, currency)` - a top-up with the coin address and the exact amount
 - `get_deposit(token)` - pending → paid, poll it after sending
 - `purchase_esim(plan_id, client_ref, …)` - charge the wallet and issue, idempotent by `client_ref`
+
+## Accounts
+
+esimker has optional accounts for people - an email and a password at
+https://esimker.com/account, where a buyer sees their orders and wallets. An
+agent needs none and cannot use one: no tool signs in, and nothing here ever
+asks for a password - if something does, it is not esimker.
+
+The two meet only through the wallet. If the person wants what the agent buys
+to show in their account, they link the wallet there themselves, with its
+code: the wallet keeps working by the code alone, and its orders and balance
+then appear in the account. Give the code to the person it belongs to and to
+nobody else.
 
 ## Source of truth
 
